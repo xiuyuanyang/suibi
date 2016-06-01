@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.BookChapterDao">
+
+	<select id="findBookChapterByChapterId" resultType="beans.BookChapter">
+		SELECT *
+		FROM
+		books_chapters WHERE
+		bcid=#{bcid};
+	</select>
+	<select id="findBookChapterByBookId" resultType="beans.BookChapter">
+		SELECT *
+		FROM
+		books_chapters WHERE
+		bkid=#{bkid};
+	</select>
+
+	<insert id="insertBookChapter" parameterType="beans.BookChapter">
+		INSERT INTO
+		books_chapters
+		(bcid,bkid,bookname,owner,zuozhe,chapter,chapter_name,content)VALUES
+		(#{bcid},#{bkid},#{bookname},#{owner},#{zuozhe},#{chapter},#{chapter_name},#{content});
+	</insert>
+	<update id="updateBookChapter" parameterType="beans.BookChapter">
+		UPDATE books_chapters
+		<set>
+			<if test="bkid != null">bkid=#{bkid},</if>
+			<if test="bookname != null">bookname=#{bookname},</if>
+			<if test="owner != null">owner=#{owner},</if>
+			<if test="zuozhe != null">zuozhe=#{zuozhe},</if>
+			<if test="chapter != null">chapter=#{chapter},</if>
+			<if test="chapter_name != null">chapter_name=#{chapter_name},</if>
+			<if test="content != null">content=#{content}</if>
+		</set>
+		WHERE
+		bcid=#{bcid};
+	</update>
+	<delete id="deleteBookChapter">
+		DELETE FROM
+		books_chapters
+		WHERE
+		<choose>
+			<when test="bkid != null">
+				bkid=#{bkid}
+			</when>
+			<when test="bookname != null">
+				bookname=#{bookname}
+			</when>
+			<when test="owner != null">
+				owner=#{owner}
+			</when>
+			<when test="zuozhe != null">
+				zuozhe=#{zuozhe}
+			</when>
+			<otherwise>
+				bcid=#{bcid}
+			</otherwise>
+		</choose>
+	</delete>
+
+</mapper>
+

@@ -18,7 +18,7 @@ create table users_to_books (
 
 create table books_chapters (
 	bcid varchar(64),
-	bookid varchar(64),
+	bkid varchar(64),
 	bookname varchar(64),
 	owner varchar(64),
 	zuozhe varchar(64),

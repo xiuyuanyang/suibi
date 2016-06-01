@@ -10,9 +10,9 @@ public interface BookChapterDao {
 	
 	int deleteBookChapter(BookChapter bc);
 	
-	BookChapter findBookChapterById(String bcid);
+	BookChapter findBookChapterByChapterId(String bcid);
 	
-	List<BookChapter> findBookChapterByBook(String bkid);
+	List<BookChapter> findBookChapterByBookId(String bkid);
 	
 	int updateBookChapter(BookChapter bc);
 }
